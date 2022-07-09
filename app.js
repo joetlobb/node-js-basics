@@ -16,19 +16,27 @@ const server = http.createServer((req, res) => {
   }
   if (url === "/message" && method === "POST") {
     const body = [];
-    req.on('data', (chunk) => {
-        console.log(chunk) // log = <Buffer 6d 65 73 73 61 67 65 3d 6a 6f 65 74 6c 6f 62 62>
-        body.push(chunk);
-    })
-    return req.on('end', () => {
-        const parsedBody = Buffer.concat(body).toString();
-        console.log(parsedBody) // log = message=joetlobb
-        const message = parsedBody.split('=')[1]
-        fs.writeFileSync("message.txt", message); // write file with extracted message
+    req.on("data", (chunk) => {
+      console.log(chunk); // log = <Buffer 6d 65 73 73 61 67 65 3d 6a 6f 65 74 6c 6f 62 62>
+      body.push(chunk);
+    });
+    return req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      console.log(parsedBody); // log = message=joetlobb
+      const message = parsedBody.split("=")[1];
+      // fs.writeFileSync("message.txt", message);
+
+      // write file with extracted message * but this is a synchronous which block code execution
+      // use writeFile which is an async instead
+      fs.writeFile("message.txt", message, (err) => {
+        // handle error, return error message to users
+
+        // response logic move in here because response should be sent when we finish write the file
         res.statusCode = 302;
         res.setHeader("Location", "/");
         return res.end();
-    })
+      });
+    });
   }
   res.setHeader("Content-Type", "text/html");
   res.write("<html>");
