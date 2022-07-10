@@ -1,0 +1,8 @@
+for "start" script, type npm start
+for custom name such as "start-server", type npm run start-server
+
+ืnpm install nodemon --save for production dependency
+npm install nodemon --save-dev for using during development
+npm install nodemon -g globally in machine and use anywhere
+    nodemon will auto restart the server when changes made in the code
+    add nodemon app.js in package.json start script instead of node app.js

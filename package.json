@@ -1,0 +1,24 @@
+{
+  "name": "01-node-basics",
+  "version": "1.0.0",
+  "description": "complete nodejs guide",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joetlobb/node-js-basics.git"
+  },
+  "author": "Gulyapas Poonkawinsiri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joetlobb/node-js-basics/issues"
+  },
+  "homepage": "https://github.com/joetlobb/node-js-basics#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
